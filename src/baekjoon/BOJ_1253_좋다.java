@@ -18,23 +18,29 @@ public class BOJ_1253_좋다 {
 		}
 		
 		Arrays.sort(arr);
-		System.out.println(Arrays.toString(arr));
 		
-		//숫자가 5개라면(-1 2 1 1)
-		int left = 0, cnt =0, right =0; //3번째 숫자 : 인덱스 2 // length = 4
-		for(int i = arr.length-1; i>1; i--) {
-			int test = arr[i];
-			right = i-1; 
-			left = 0;
-			
+		int left = 0, right = 0, cnt = 0, len = 0;
+		for(int i=0; i<N; i++) {
+			int target = arr[i];
+			left = 0; right = N-1; //idx
 			while(left<right) {
-				if(arr[left]+arr[right] == test) {
+				
+				if (left == i) {
+					left++;
+					continue;
+				}
+				if (right == i) {
+					right--;
+					continue;
+				}
+				
+				if(arr[left]+arr[right]==target) {
 					cnt++;
 					break;
-				}else if(arr[left]+arr[right] > test) {
-					right--;				
-				}else if(arr[left]+arr[right] < test) {
+				}else if(arr[left]+arr[right]<target) {
 					left++;
+				}else {
+					right--;
 				}
 			}
 		}
