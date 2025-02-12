@@ -21,20 +21,20 @@ public class BOJ_2527_직사각형 {
             int x4 = Integer.parseInt(st.nextToken());
             int y4 = Integer.parseInt(st.nextToken());
             
-            // Case 1: 공통 부분 없음 (완전히 떨어진 경우)
+            // 안만남
             if (x2 < x3 || x4 < x1 || y2 < y3 || y4 < y1) {
                 System.out.println("d");
             }
-            // Case 2: 점이 맞닿는 경우
+            // 점
             else if ((x2 == x3 && y2 == y3) || (x2 == x3 && y1 == y4) ||
                      (x1 == x4 && y2 == y3) || (x1 == x4 && y1 == y4)) {
                 System.out.println("c");
             }
-            // Case 3: 선이 맞닿는 경우
+            // 선
             else if (x2 == x3 || x1 == x4 || y2 == y3 || y1 == y4) {
                 System.out.println("b");
             }
-            // Case 4: 내부 일부라도 겹치는 경우
+            // 면
             else {
                 System.out.println("a");
             }
