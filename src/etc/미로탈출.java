@@ -10,14 +10,14 @@ import java.util.StringTokenizer;
 public class 미로탈출 {
 	static int N;
 	static int M;
-	static int[][] arr;
+	static int[] arr;
 	static int[] dx = {-1,0,0,1};
 	static int[] dy = {0,1,-1,0};
 	//동, 서, 남, 북
 	
 	private static int bfs() {
 		Deque<int[]> deque = new ArrayDeque<>();
-		deque.add(arr[0][0]);
+		deque.add(new int[] {0,0});
 		int r = 0;
 		int c = 0;
 		boolean run = true;
