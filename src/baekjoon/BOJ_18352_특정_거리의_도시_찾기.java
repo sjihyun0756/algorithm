@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -97,7 +98,7 @@ public class BOJ_18352_특정_거리의_도시_찾기 {
 	static Deque<Integer> deque = new ArrayDeque<>();
 	static boolean[] visited;
 	static int[] checkDepth;
-	static StringBuilder sb = new StringBuilder();
+	static List<Integer> result = new ArrayList<>();
 	static int K;
 	
 	private static void bfs(int i) {
@@ -109,9 +110,10 @@ public class BOJ_18352_특정_거리의_도시_찾기 {
 			for(int v : list[point]) {
 				if(!visited[v]) {
 					deque.offerLast(v);
+					visited[v] = true;
 					checkDepth[v] = checkDepth[point] +1;
 					if(checkDepth[v] ==K) {
-						sb.append(v).append("\n");
+						result.add(v);
 					}
 				}
 			}
@@ -134,8 +136,8 @@ public class BOJ_18352_특정_거리의_도시_찾기 {
 		
 		for(int i=0; i<N+1; i++) {
 			list[i] = new ArrayList<>();
-			checkDepth[i] = 0;
 		}//
+		
 		
 		for(int i=0; i<M; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -145,7 +147,14 @@ public class BOJ_18352_특정_거리의_도시_찾기 {
 		}
 		
 		bfs(X);
-		if(sb.length() != 0)System.out.println(sb);
+		Collections.sort(result);
+		if(result.size() != 0) {
+			StringBuilder sb = new StringBuilder();
+			for (int num : result) {
+			    sb.append(num).append("\n");
+			}
+			System.out.print(sb);
+		}
 		else System.out.println(-1);
 		
 	}
