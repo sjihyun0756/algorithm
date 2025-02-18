@@ -65,7 +65,6 @@ public class BOJ_2178_미로_탐색 {
 			}
 		} //배열 받고
 
-		//bfs인데
 		
 		//System.out.println(" N : M :::::::::::" + N + " " + M);
 		System.out.println(bfs(0,0));

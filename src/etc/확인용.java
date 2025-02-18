@@ -1,4 +1,4 @@
-package swea;
+package etc;
 
 public class 확인용 {
 	public static void main(String[] args) {
