@@ -1,4 +1,4 @@
-package etc;
+package tip;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class BOJ_11724_dfsbfs {
+public class DFS_BFS_기본형태 {
 	
 	static List<Integer>[] list;
 	static boolean[] visited;

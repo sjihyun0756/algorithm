@@ -1,4 +1,4 @@
-package etc;
+package tip;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
-package etc;
+package tip;
 
-public class 에라토스테네스의체연습 {
+public class 에라토스테네스의체 {
 	static final int MAX = 10000000;
 	
 
