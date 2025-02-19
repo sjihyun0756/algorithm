@@ -6,8 +6,6 @@ import java.util.List;
 
 //1~6까지 수가 있을 때 2/4 묶음으로 나눠보기
 
-
-
 public class 순열과조합5 {
 	
 	
