@@ -14,15 +14,19 @@ public class DFS_BFS_그래프형태 {
 	
 	
 	private static void dfs(int i) {
-		
 		if(visited[i]) return;
-		
 		visited[i] = true;
 		for(int v : list[i]) {
 			if(!visited[v]) {
 				dfs(v);
 			}
 		}
+	}
+	
+	private static void bfs(int i) {
+		
+		
+		
 	}
 	
 	
