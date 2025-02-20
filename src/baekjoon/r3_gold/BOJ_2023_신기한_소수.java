@@ -86,11 +86,12 @@ public class BOJ_2023_신기한_소수 {
 	}
 }
 */
-
+/*
 //DFS
 package baekjoon.r3_gold;
 
 import java.util.Scanner;
+
 
 public class BOJ_2023_신기한_소수 {
 
@@ -124,5 +125,62 @@ public class BOJ_2023_신기한_소수 {
         dfs(3, 1, N);
         dfs(5, 1, N);
         dfs(7, 1, N);
+    }
+}
+*/
+
+package baekjoon.r3_gold;
+
+import java.util.Scanner;
+
+public class BOJ_2023_신기한_소수 {
+	static int N;
+    static boolean[] isNotPrime;
+    static int MAX;
+
+    // 에라토스테네스의 체: 소수 판별
+    private static void checkPrime() {
+        isNotPrime[0] = isNotPrime[1] = true;
+
+        for (int i = 2; i * i <= MAX; i++) {
+            if (!isNotPrime[i]) { // 소수라면
+                for (int j = i * i; j <= MAX; j += i) {
+                    isNotPrime[j] = true;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        N = sc.nextInt();
+        sc.close();
+        MAX = (int) Math.pow(10, N);
+        isNotPrime = new boolean[MAX + 1];
+        
+        checkPrime(); // 소수 미리 판별
+
+        // 한 자리 숫자 중에서 소수인 값만 시작점으로 둠
+        int[] startDigits = {2, 3, 5, 7};
+
+        for (int num : startDigits) {
+        	findPrime(num, 1); // 첫 자리 수부터 시작
+        }
+    }
+
+    private static void findPrime(int num, int length) {
+        if (length == N) {
+            System.out.println(num);
+            return;
+        }
+
+        // 마지막에 1, 3, 7, 9만 붙여야 함 (짝수와 5로 끝나면 안됨)
+        for (int digit : new int[]{1, 3, 7, 9}) {
+            int nextNum = num * 10 + digit; // 새로운 숫자 생성
+
+            if (!isNotPrime[nextNum]) { // 소수라면
+            	findPrime(nextNum, length + 1); // 재귀 호출
+            }
+        }
     }
 }

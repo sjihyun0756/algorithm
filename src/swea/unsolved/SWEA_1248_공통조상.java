@@ -15,7 +15,10 @@ public class SWEA_1248_공통조상 {
 	static List<Integer> forTarget2;
 	
 	
-	private static void 
+	private static void bfs() {
+		
+		
+	}
 	
 	
 	public static void main(String[] args) throws IOException {
