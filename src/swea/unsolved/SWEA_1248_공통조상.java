@@ -3,19 +3,118 @@ package swea.unsolved;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class SWEA_1248_공통조상 {
 	
 	static List<Integer>[] graph;
-	static List<Integer> forTarget1;
-	static List<Integer> forTarget2;
+	static Set<Integer> findCommon = new LinkedHashSet<>();
+	static Deque<Integer> deque;
+	static boolean[] visit;
+	static StringBuilder sb;
 	
 	
-	private static void bfs() {
+	//***************************
+	//공통 조상만 찾기 -> 현재 코드로 가능
+	//공통 조상 찾으면서 서브트리 크기 찾기
+	//-> dfs 깊이를 이용해서 한번에 찾는 게 효율적임
+
+	//현재 : bfs로 공통 조상 찾고 -> dfs로 서브 트리 찾고 있음
+	//수정 : dfs로 코드 바꾸기
+	//1. 깊이 탐색 2. 깊이 맞추기 3. 한칸씩 같이 올라가기 4. 조상 찾기
+	
+	private static void bfs(int target1, int target2) {
+		deque = new ArrayDeque<>();
+		visit[target1] = true;
+		deque.offerLast(target1);
+		findCommon.add(target1);
+		
+		breakpoint1:
+		while(!deque.isEmpty()) {
+			int point = deque.pollFirst();
+			
+			for(int v : graph[point]) {
+				if(v==1) { //탑노드
+					findCommon.add(v);
+					break breakpoint1;
+				}
+				
+				if(!visit[v]) {
+					findCommon.add(v);
+					System.out.println(v);
+					deque.offerLast(v);
+					visit[v] = true;
+				}
+			}
+		}
+		
+		deque.clear();
+		visit[target2] = true;
+		deque.offerLast(target2);
+		
+		
+		System.out.println("---------------------------");
+		
+		int findPoint =0;
+		if(findCommon.contains(target2)) { //target2가 애초에 target1의 조상일 경우
+			sb.append(target2);
+			findPoint=target2;
+			return;
+		}else {
+			findCommon.add(target2);
+		}
+		
+		
+		breakpoint2:
+		while(!deque.isEmpty()) {
+			int point = deque.pollFirst();
+			for(int v : graph[point]) {
+				
+				
+				if(findCommon.contains(v)) {
+					findPoint=v;
+					sb.append(v);
+					break breakpoint2;
+				}else {
+					if(!visit[v]) {
+						findCommon.add(v);
+						System.out.println(v);
+						deque.offerLast(v);
+						visit[v] = true;
+					}
+				}
+			}
+		}
+		
+		
+//		deque.clear();
+//		visit = new boolean[visit.length];
+//		visit[findPoint] = true;
+//		deque.offerLast(findPoint);
+//		
+//		while(!deque.isEmpty()) {
+//			int point = deque.pollFirst();
+//			for(int v : graph[point]) {
+//				if(findCommon.contains(v)) {
+//					findPoint=v;
+//					sb.append(v);
+//					break breakpoint2;
+//				}
+//				
+//				if(!visit[v]) {
+//					System.out.println(v);
+//					deque.offerLast(v);
+//					visit[v] = true;
+//				}
+//			}
+//		}
 		
 		
 	}
@@ -32,22 +131,29 @@ public class SWEA_1248_공통조상 {
 			int V = Integer.parseInt(st.nextToken());
 			int E = Integer.parseInt(st.nextToken());
 			
-			int num1 = Integer.parseInt(st.nextToken());
-			int num2 = Integer.parseInt(st.nextToken());
+			int target1 = Integer.parseInt(st.nextToken());
+			int target2 = Integer.parseInt(st.nextToken());
 			
 			graph = new List[V+1];
+			visit = new boolean[V+1];
 			for(int i=0; i<V+1; i++) {
 				graph[i] = new ArrayList<>();
 			}
 			
 			st = new StringTokenizer(br.readLine());
 			while(st.hasMoreTokens()) {
-				int v = Integer.parseInt(st.nextToken());
 				int u = Integer.parseInt(st.nextToken());
-				graph[u].add(v); //반대로 넣어줌
+				int v = Integer.parseInt(st.nextToken());
+				graph[u].add(v); 
+				//graph[v].add(u); 
 			}
 			
+			sb = new StringBuilder();
+			sb.append("#"+tc+" ");
+			bfs(target1, target2);
 			System.out.println(Arrays.toString(graph));
+			System.out.println(findCommon);
+			System.out.println(sb);
 		} 
 	}
 }

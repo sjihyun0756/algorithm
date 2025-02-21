@@ -3,7 +3,9 @@ package tip;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -11,6 +13,7 @@ public class DFS_BFS_그래프형태 {
 	
 	static List<Integer>[] list;
 	static boolean[] visited;
+	static Deque<Integer> deque;
 	
 	
 	private static void dfs(int i) {
@@ -24,9 +27,20 @@ public class DFS_BFS_그래프형태 {
 	}
 	
 	private static void bfs(int i) {
+		deque = new ArrayDeque<>();
+		deque.offerLast(i);
+		visited[i] = true;
 		
-		
-		
+		while(!deque.isEmpty()) {
+			int point = deque.pollFirst();
+			
+			for(int v : list[point]) {
+				if(!visited[v]) {
+					visited[v] = true;
+					deque.offerLast(v);
+				}
+			}
+		}
 	}
 	
 	
