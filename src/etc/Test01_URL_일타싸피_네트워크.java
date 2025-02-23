@@ -1,4 +1,4 @@
-package tip;
+package etc;
 
 import java.net.MalformedURLException;
 import java.net.URL;
