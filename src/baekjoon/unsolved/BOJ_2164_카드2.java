@@ -1,4 +1,4 @@
-package baekjoon.r3_gold;
+package baekjoon.unsolved;
 
 public class BOJ_2164_카드2 {
 
