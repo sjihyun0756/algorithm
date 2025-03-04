@@ -1,13 +1,18 @@
-package baekjoon.r2_silver;
+package etc;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class BOJ_2178_미로_탐색 {
+public class 다시풀기용 {
 	static int N;
 	static int M;
 	static int[][] map;

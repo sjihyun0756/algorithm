@@ -3,47 +3,35 @@ package baekjoon.r2_silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class BOJ_1874_스택_수열 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine()); //8
-		int[] arr = new int[n];
-		for(int i=0; i<n; i++) {
-			arr[i] = Integer.parseInt(br.readLine());
-		}
-		Stack<Integer> stack = new Stack<>();
-		List<String> result = new ArrayList<>();
+		Stack<Integer> s = new Stack<>();
+		StringBuilder sb = new StringBuilder();
 		
-		//4 3 6 8 7 5 2 1
-		int num =1;
-		boolean success = true;
-		for(int i=0; i<n; i++) {
-			if(num <= arr[i]) {
-				while(num <= arr[i]) {
-					stack.push(num++);
-					result.add("+");
+		int num = 1;
+		int N = Integer.parseInt(br.readLine());
+		for(int i=0; i<N; i++) {
+			int input = Integer.parseInt(br.readLine());
+			if(num<=input) {
+				while(num<=input) {
+					s.add(num++);
+					sb.append("+").append("\n");
 				}
-				stack.pop();
-				result.add("-");
+				s.pop();
+				sb.append("-").append("\n");
 			}else {
-				int check = stack.pop();
-				result.add("-");
-				
-				if(check>arr[i]) {
+				if(input == s.peek()) {
+					s.pop();
+					sb.append("-").append("\n");			
+				}else {//input<peek
 					System.out.println("NO");
-					success = false;
-					break;					
+					return;
 				}
 			}
 		}
-		if(success) {
-			for(String s : result) {
-				System.out.println(s);
-			}
-		}
+		System.out.println(sb);
 	}
 }
