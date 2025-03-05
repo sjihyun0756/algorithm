@@ -11,5 +11,7 @@ public class BOJ_11720_숫자의합 {
 		for(int i=0; i<n; i++) 
 			sum += numList.charAt(i)-'0';
 		System.out.println(sum);
+		
+		sc.close();
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class SWEA_2072_홀수만_더하기 {
-{
+
 	public static void main(String args[]) throws Exception
 	{
 		Scanner sc = new Scanner(System.in);

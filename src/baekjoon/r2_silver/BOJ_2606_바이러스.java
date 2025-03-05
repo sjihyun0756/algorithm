@@ -5,71 +5,59 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_2606_바이러스 {
 	
-	static Deque<Integer> deque;
 	static List<Integer>[] graph;
 	static boolean[] visit;
-	static int N;
-	static int V;
 	static int cnt;
 	
 	private static void bfs(int start) {
-		
-		deque = new ArrayDeque<>();
+		Queue<Integer> q = new ArrayDeque<>();
 		visit[start] = true;
-		deque.offerLast(start);
+		q.offer(1);
 		
-		cnt = 0;
-		while(!deque.isEmpty()) {
+		while(!q.isEmpty()) {
 			
-			int point = deque.pollFirst();
-			
-			for(int v : graph[point]) {
-				if(!visit[v]) {
+			int node = q.poll();
+			for(int n : graph[node]) {
+				if(!visit[n]) {
+					visit[n] = true;
+					q.offer(n);
 					cnt++;
-					visit[v] = true;
-					deque.offerLast(v);
 				}
 			}
 		}
 	}
 	
-	public static void main(String[] args) throws  IOException {
-		
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		N = Integer.parseInt(br.readLine());
+		StringTokenizer st;
 		
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		V = Integer.parseInt(st.nextToken());
+		int V = Integer.parseInt(br.readLine());
+		int E = Integer.parseInt(br.readLine());
 		
-		graph = new ArrayList[N+1];
-		visit = new boolean[N+1];
+		graph = new ArrayList[V+1];
+		visit = new boolean[V+1];
 		
-		for(int i=0; i<=N; i++) {
+		for(int i=0; i<V+1; i++) {
 			graph[i] = new ArrayList<>();
 		}
 		
-		for(int i=0; i<V; i++) {
-			 st = new StringTokenizer(br.readLine());
-			 int u = Integer.parseInt(st.nextToken());
-			 int v = Integer.parseInt(st.nextToken());
-			 
-			 graph[u].add(v);
-			 graph[v].add(u);
-		}
+		for(int i=0; i<E; i++) {
+			st = new StringTokenizer(br.readLine());
+			int u = Integer.parseInt(st.nextToken());
+			int v = Integer.parseInt(st.nextToken());
 			
+			graph[u].add(v);
+			graph[v].add(u);
+		}
 		
-		bfs(1);	
+		cnt = 0;
+		bfs(1);
 		System.out.println(cnt);
-		
-		
-		
-		
 	}
-
 }

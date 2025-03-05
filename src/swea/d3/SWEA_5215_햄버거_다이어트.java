@@ -1,4 +1,4 @@
-package swea.unsolved;
+package swea.d3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,7 @@ public class SWEA_5215_햄버거_다이어트 {
 	static int L;
 	static int[] score;
 	static int[] cal;
-	static int maxScore = 0;
+	static int maxScore;
 	
 	private static void combination(int depth, int last) {
 		
@@ -20,18 +20,12 @@ public class SWEA_5215_햄버거_다이어트 {
 			int sumCalorie = 0;
 			int sumScore = 0;
 			for(int i=0; i<arr.length; i++) {
-				System.out.println("-------------------");
-				System.out.println("지금 보고 있는 : " + cal[arr[i]]);
-				sumCalorie+= cal[arr[i]];
 				sumScore += score[arr[i]];
+				sumCalorie+= cal[arr[i]];
 			}
 			
 			if(sumCalorie<=L) {
-				System.out.println("게산한 칼로리 총 합 : " + sumCalorie);
-				System.out.println("게산한 점수 총 합 : " + sumScore);
 				maxScore = Math.max(maxScore, sumScore);
-				System.out.println("maxScore" + maxScore);
-				System.out.println(Arrays.toString(arr));
 			}
 			return;
 		}
@@ -40,8 +34,6 @@ public class SWEA_5215_햄버거_다이어트 {
 			arr[depth] = i;
 			combination(depth+1, i);
 		}
-		
-		
 	}
 	
 	
@@ -67,6 +59,7 @@ public class SWEA_5215_햄버거_다이어트 {
 				cal[i] = Integer.parseInt(st.nextToken());
 			}
 			
+			maxScore = 0;
 			for(int i=1; i<=N; i++) {
 				arr = new int[i];
 				combination(0,-1);

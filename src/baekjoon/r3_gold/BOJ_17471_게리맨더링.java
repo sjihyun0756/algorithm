@@ -44,7 +44,6 @@ public class BOJ_17471_게리맨더링 {
 				}
 			}
 		}
-		
 		return count == area.size();
 	}
 	
@@ -65,7 +64,7 @@ public class BOJ_17471_게리맨더링 {
 			
 			combination.add(Arrays.asList(group1,group2));
 			
-			//System.out.println(combination);
+			System.out.println(combination);
 			return;
 		}
 

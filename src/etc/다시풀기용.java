@@ -13,49 +13,65 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class 다시풀기용 {
-	static int N;
-	static int M;
-	static int[][] map;
-	static int[] dx = {0,0,1,-1};
-	static int[] dy = {1,-1,0,0};
 	
+	static List<Integer>[] graph;
+	static boolean[] visit;
+	static int K;
+	static StringBuilder sb = new StringBuilder();
 	
-	private static void bfs(int i, int j) {
-		Queue<int[]> q = new ArrayDeque<>();	
-		q.offer(new int[] {i,j});
+	private static void bfs(int X) {
+		Queue<Integer> q = new ArrayDeque<>();
+		q.offer(X);
+		visit[X] = true;
 		
+		int level = 0;
 		while(!q.isEmpty()) {
-			int[] point = q.poll();
-			if(point[0] ==N-1 && point[1] == M-1) break;
-			
-			for(int d =0; d<4; d++) {
-				int nx = point[0] + dx[d];
-				int ny = point[1] + dy[d];
-				
-				if(0<=nx && nx<N && 0<=ny && ny<M && map[nx][ny]==1) {
-					q.offer(new int[] {nx,ny});
-					map[nx][ny] = map[point[0]][point[1]]+1; 
+			int size = q.size();
+			for(int i=0; i<size; i++) {
+				int node = q.poll();
+				if(level == K) {
+					sb.append(node).append("\n");
+					continue;
+				}
+				for(int n : graph[node]) {
+					if(!visit[n]) {
+						q.offer(n);
+						visit[n] = true;
+					}
 				}
 			}
+			level++;
+			if(level>K) return;
 		}
-		System.out.println(map[N-1][M-1]);
+		
 	}
-	
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		map = new int[N][M];
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
+		int X = Integer.parseInt(st.nextToken());
 		
-		for(int i=0; i<N; i++) {
-			String input = br.readLine();
-			for(int j=0; j<M; j++) {
-				map[i][j] = input.charAt(j)-'0';
-			}
+		graph = new ArrayList[N+1];
+		visit = new boolean[N+1];
+		
+		for(int i=1; i<N+1; i++) {
+			graph[i] = new ArrayList<>();
 		}
-		bfs(0,0);
+		
+		for(int i=0; i<M; i++) {
+			st = new StringTokenizer(br.readLine());
+			int u = Integer.parseInt(st.nextToken());
+			int v = Integer.parseInt(st.nextToken());
+			
+			graph[u].add(v);
+		}
+		
+		bfs(X);
+		if(sb.length() ==0) System.out.println(-1);
+		else System.out.println(sb);
 	}
 }
