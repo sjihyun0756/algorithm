@@ -27,8 +27,8 @@ public class BOJ_2231_분해합 {
 			}
 		}
 		
-		if(!found)
-			System.out.println("0");
+		if(!found) System.out.println("0");
+		sc.close();
 	}
 
 }
