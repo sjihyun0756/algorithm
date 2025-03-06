@@ -21,6 +21,7 @@ public class BOJ_1546_평균 {
 			sum += (((double)numArr[i])/max)*100;
 		}
 		System.out.println(sum/n);
+		sc.close();
 	}
 
 }
