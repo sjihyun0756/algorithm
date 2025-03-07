@@ -9,18 +9,19 @@ public class 퀵정렬_로투포파티션_연습 {
 	private static void quickSort(int start, int end) {
 		if(start<end) {
 			int pivot = partition(start,end);
-			quickSort(start, pivot-1);
+			quickSort(start, pivot -1);
 			quickSort(pivot+1, end);
 		}
+		
 	}
 	
-	private static int partition(int start,  int end) {
+	private static int partition(int start, int end) {
 		
 		int pivot = arr[end];
 		int i = start-1;
 		
-		for(int j= start; j<end; j++) {
-			if(arr[j] <= pivot) {
+		for(int j=start; j<end; j++) {
+			if(arr[j]<=pivot) {
 				i++;
 				int tmp = arr[i];
 				arr[i] = arr[j];
@@ -34,11 +35,10 @@ public class 퀵정렬_로투포파티션_연습 {
 		
 		return i+1;
 	}
-
 	
 	public static void main(String[] args) {
-		System.out.println(Arrays.toString(arr));
-		quickSort(0,N-1);
+		quickSort(0, N - 1);
+		
 		System.out.println(Arrays.toString(arr));
 	}
 }
