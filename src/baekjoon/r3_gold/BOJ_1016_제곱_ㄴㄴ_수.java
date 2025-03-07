@@ -8,7 +8,6 @@ public class BOJ_1016_제곱_ㄴㄴ_수 {
 	static long min, max;
 	static long cnt;
 	static boolean[] checkNum; //true : 제곱수마즘
-	
 
 	private static void findNum() {
 		for (long i = 2; i*i <= max; i++) {
