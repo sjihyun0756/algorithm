@@ -1,4 +1,4 @@
-package jungol.r1_beginner;
+package jungol.r2_silver;
 
 import java.io.BufferedReader;
 import java.io.IOException;

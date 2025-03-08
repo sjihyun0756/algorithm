@@ -2,10 +2,6 @@ package tip;
 
 public class 에라토스테네스의체 {
 	static final int MAX = 10000000;
-	
-
-	
-	
 	static boolean[] isNotPrime = new boolean[MAX+1];
 
 	private static void checkPrime() {
