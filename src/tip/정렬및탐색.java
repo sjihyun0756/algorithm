@@ -55,13 +55,14 @@ public class 정렬및탐색 {
         for (int i = 0; i < arr.length; i++) {
             int minIdx = i;
             for (int j = i + 1; j < arr.length; j++) {
-                if (arr[minIdx] > arr[j]) {
+                if (arr[minIdx] < arr[j]) {
                     minIdx = j;
                 }
             }
             int tmp = arr[minIdx];
             arr[minIdx] = arr[i];
             arr[i] = tmp;
+            System.out.println( Arrays.toString(arr));
         }
         System.out.println("선택정렬" + Arrays.toString(arr));
     }
@@ -103,11 +104,11 @@ public class 정렬및탐색 {
 
     //
     public static void main(String[] args) {
-        int[] arr = new int[]{3, 7, 1, 5, 2, 8, 3, 1, 5, 5, 2, 10, 9, 0, 3};
+        int[] arr = new int[]{7,8,4,6,6};
         //카운팅정렬(arr);
         //버블정렬(arr);
-        //선택정렬(arr);
-        삽입정렬(arr);
+        선택정렬(arr);
+        //삽입정렬(arr);
         //이진탐색(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 8);
     }
 }
