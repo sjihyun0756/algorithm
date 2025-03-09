@@ -68,14 +68,16 @@ public class 정렬및탐색 {
 
     //
     static void 삽입정렬(int arr[]) {
-    	for(int i=1; i<arr.length; i++) {
+    	for(int i=1; i<arr.length-1; i++) {
     		int key = arr[i];
     		int j = i-1;
+    		
     		while(j>=0 && arr[j]>key) {
     			arr[j+1] = arr[j];
     			j--;
     		}
     		arr[j+1] = key;
+    		
     	}
     	System.out.println("삽입정렬" + Arrays.toString(arr));
     }
@@ -102,10 +104,10 @@ public class 정렬및탐색 {
     //
     public static void main(String[] args) {
         int[] arr = new int[]{3, 7, 1, 5, 2, 8, 3, 1, 5, 5, 2, 10, 9, 0, 3};
-        카운팅정렬(arr);
-        버블정렬(arr);
-        선택정렬(arr);
+        //카운팅정렬(arr);
+        //버블정렬(arr);
+        //선택정렬(arr);
         삽입정렬(arr);
-        이진탐색(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 8);
+        //이진탐색(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 8);
     }
 }

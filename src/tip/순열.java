@@ -4,6 +4,7 @@ public class 순열 {
 	
 	static int[] arr = {1,2};
 	static int[] num = new int[4];
+	
 	public static void main(String[] args) {
 		perm(0);
 	}
