@@ -12,11 +12,7 @@ public class BOJ_1033_칵테일 {
 	
 	static List<Integer>[] graph;
 	static List<Integer>[] ratio;
-	
-	private static void findMin() {
-		
-		
-	}
+
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -42,6 +38,7 @@ public class BOJ_1033_칵테일 {
 			ratio[b].add(p);
 			ratio[b].add(q);
 		}
+		
 		
 		System.out.println(Arrays.toString(graph));
 		System.out.println(Arrays.toString(ratio));
