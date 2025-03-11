@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-public class BOJ_오아시스_재결합_3015 {
+public class BOJ_3015_오아시스_재결합 {
 	public static void main(String[] args) throws  IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Stack<Integer> s = new Stack<>();

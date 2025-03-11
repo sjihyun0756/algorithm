@@ -3,12 +3,15 @@ package baekjoon.r3_gold;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class BOJ_1456_거의_소수 {
     
     static boolean[] isNotPrime;
     static long sqrtB;
+    
+    
 
     // 소수 체크 함수
     private static void checkPrime() {
