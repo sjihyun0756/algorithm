@@ -1,4 +1,4 @@
-package baekjoon.r3_gold;
+package com.ssafy.sjihyun;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,14 +56,15 @@ public class BOJ_1759_암호_만들기 {
 
 		arr = new char[C];
 		result = new char[L];
-		vowel = new ArrayList<>();
 		st = new StringTokenizer(br.readLine());
+		int cntVowel = 0;
 		for (int i = 0; i < C; i++) {
 			arr[i] = st.nextToken().charAt(0);
 			if(arr[i] == 'a' || arr[i] == 'e' || arr[i] == 'i' || arr[i] == 'o' || arr[i] == 'u') {
 				vowel.add(arr[i]);
 			}
 		}
+		int cntConsonant = L-cntVowel;
 		Arrays.sort(arr);
 		findCombination(0,-1);
 		System.out.println(sb);
