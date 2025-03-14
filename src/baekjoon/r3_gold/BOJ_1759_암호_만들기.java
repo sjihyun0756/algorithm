@@ -1,4 +1,4 @@
-package com.ssafy.sjihyun;
+package baekjoon.r3_gold;
 
 import java.io.BufferedReader;
 import java.io.IOException;

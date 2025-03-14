@@ -7,27 +7,16 @@ import java.util.Scanner;
 
 public class testtt {
 	public static void main(String[] args) {
-		List<int[]> list = new ArrayList<>();
+		List<Integer> list = new ArrayList<>();
+		list.add(10);
+		list.add(11);
+		list.add(12);
+		list.add(13);
+		list.add(14);
+		list.add(15);
+		list.add(16);
 		
-		list.add(new int[] {1,2});
-		list.add(new int[] {2,3});
-		list.add(new int[] {4,5});
-		list.add(new int[] {4,6});
-		
-		
-		for(int i=0; i<list.size(); i++) {
-			System.out.println(Arrays.toString(list.get(i)));
-			System.out.println(list.get(i)[0]);
-		}
-		
-		String[][] arr = new String[3][3];
-		for(int i=0; i<arr.length; i++) {
-			Arrays.fill(arr[i], "9");
-		}
-		
-		for(int i=0; i<arr.length; i++)
-			System.out.println(Arrays.toString(arr[i]));
+		System.out.println(list.get(3));
 	}
-
 }
 

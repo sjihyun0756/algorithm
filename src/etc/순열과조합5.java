@@ -1,4 +1,4 @@
-package tip;
+package etc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
