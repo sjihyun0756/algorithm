@@ -1,5 +1,5 @@
 package baekjoon.unsolved;
-
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,8 +24,6 @@ public class BOJ_10971_외판원_순회2 {
 				dfs(node);
 			}
 		}
-		
-		
 	}
 	
 	public static void main(String[] args) throws IOException {
@@ -58,4 +56,59 @@ public class BOJ_10971_외판원_순회2 {
 		}
 	}
 
+}
+*/
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class BOJ_10971_외판원_순회2 {
+
+    static int N;
+    static int[][] priceMap;
+    static boolean[] visit;
+    static int minCost = Integer.MAX_VALUE;
+
+    private static void findMin(int start, int cur, int count, int cost) {
+        if (count == N) { 
+            if (priceMap[cur][start] != 0) {
+                minCost = Math.min(minCost, cost + priceMap[cur][start]);
+            }
+            return;
+        }
+
+        for (int next = 0; next < N; next++) {
+            if (!visit[next] && priceMap[cur][next] != 0) {
+                visit[next] = true;
+                findMin(start, next, count + 1, cost + priceMap[cur][next]);
+                visit[next] = false; 
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+
+        N = Integer.parseInt(br.readLine());
+        priceMap = new int[N][N];
+        visit = new boolean[N];
+
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                priceMap[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        for (int i = 0; i < N; i++) { 
+            visit[i] = true;
+            findMin(i, i, 1, 0);
+            visit[i] = false;
+        }
+        System.out.println(minCost);
+    }
 }

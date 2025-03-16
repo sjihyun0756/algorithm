@@ -6,56 +6,44 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class SWEA_2817_부분_수열의_합 {
-	static int K;
+	static int K, N, cnt;
 	static int[] arr;
-	static int[] num;
-	static int cnt;
-	
-	private static void combination(int depth, int last) {
-		
-		if(depth == num.length) {
-			int check = 0;
-			for(int i=0; i<num.length; i++) {
-				check += num[i];
-			}
-			if(check == K) cnt++;
+	private static void combination(int depth, int last, int sum) {
+		if (sum == K) {
+			cnt++;
+		}
+		if (sum > K || depth >= N) {
 			return;
 		}
-		
-		for(int i= last+1; i<arr.length; i++) {
-			num[depth] = arr[i];
-			combination(depth+1, i);
+
+		for (int i = last + 1; i < N; i++) {
+			combination(depth + 1, i, sum + arr[i]);
 		}
 	}
-	
-	
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		StringBuilder sb = new StringBuilder();
-		
+
 		int T = Integer.parseInt(br.readLine());
-		for(int tc = 1; tc<=T; tc++) {
-			sb.append("#" + tc + " ");
-			
+		for (int tc = 1; tc <= T; tc++) {
+			sb.append("#").append(tc).append(" ");
 			st = new StringTokenizer(br.readLine());
-			int N = Integer.parseInt(st.nextToken());
+			N = Integer.parseInt(st.nextToken());
 			K = Integer.parseInt(st.nextToken());
-			
+
 			arr = new int[N];
+			cnt = 0;
+
 			st = new StringTokenizer(br.readLine());
-			for(int i=0; i<N; i++) {
+			for (int i = 0; i < N; i++) {
 				arr[i] = Integer.parseInt(st.nextToken());
 			}
-			
-			cnt = 0;
-			for(int i=0; i<N; i++) {
-				num = new int[i+1];
-				combination(0,-1);
-			}
-			
-			System.out.println(sb.append(cnt));
-			sb.setLength(0);
+
+			combination(0, -1, 0); 
+			sb.append(cnt).append("\n");
 		}
+		System.out.println(sb);
 	}
 }
