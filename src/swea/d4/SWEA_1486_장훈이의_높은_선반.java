@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BOJ_1486_장훈이의_높은_선반 {
+public class SWEA_1486_장훈이의_높은_선반 {
 	static int B;
 	static int[] height;
 	static int minResult;
