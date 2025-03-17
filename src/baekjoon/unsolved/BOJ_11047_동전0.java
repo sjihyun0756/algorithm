@@ -23,7 +23,6 @@ public class BOJ_11047_동전0 {
 				sum += m;
 			}
 			if (sum == K) {
-				//System.out.println(Arrays.toString(num));
 				return true;
 			}
 				
