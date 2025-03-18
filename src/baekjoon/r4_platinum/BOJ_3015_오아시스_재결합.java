@@ -1,4 +1,4 @@
-package baekjoon.unsolved;
+package baekjoon.r4_platinum;
 
 import java.io.BufferedReader;
 import java.io.IOException;

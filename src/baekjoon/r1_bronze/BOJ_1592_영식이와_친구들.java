@@ -3,38 +3,44 @@ package baekjoon.r1_bronze;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class BOJ_1592_영식이와_친구들 {
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		int[] arr = new int[Integer.parseInt(st.nextToken())+1];
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken()); //num칸씩 이동
-		int len = arr.length-1;
-		int cnt = 0;
-		int idx =1;		
-		arr[idx]++;
-		
-		if(N ==1) {
-			System.out.println(0);
-		}else {
-			while(true) {
-				if(arr[idx] %2 != 0) { //홀수
-					idx = (idx+M) <= len ? idx+M : idx+M-len; 
-					cnt++;
-					arr[idx]++;
-					if(arr[idx]==N) break;
-				}else { //짝수
-					idx = (idx-M) >0 ? idx-M : idx-M+len;
-					cnt++;
-					arr[idx]++;
-					if(arr[idx]==N) break;
-				}
-			}
-			System.out.println(cnt);
-		}
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        int N = Integer.parseInt(st.nextToken()); 
+        int M = Integer.parseInt(st.nextToken()); // M번 받으면 끝 
+        int L = Integer.parseInt(st.nextToken()); // L만큼
+
+        for (int i = 1; i <= N; i++) {
+            map.put(i, 0);
+        }
+
+        int p = 1; 
+        int count = 0;
+
+        while (true) {
+            map.put(p, map.get(p) + 1);
+
+            if (map.get(p) == M) { 
+                break;
+            }
+
+            if (map.get(p) % 2 == 1) { //오른
+                p = p+L > N ? p+L-N : p+L;
+            } else { // 왼쪽 
+                p = p - L < 0 ? p - L + N : p - L;
+
+            }
+            count++;
+        }
+
+        System.out.println(count);
+    }
 }
