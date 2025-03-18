@@ -25,7 +25,6 @@ public class BOJ_1592_영식이와_친구들 {
         int p = 1; 
         int count = 0;
 
-        while (true) {
             map.put(p, map.get(p) + 1);
 
             if (map.get(p) == M) { 
