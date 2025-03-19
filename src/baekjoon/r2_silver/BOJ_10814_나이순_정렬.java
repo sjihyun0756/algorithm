@@ -1,4 +1,4 @@
-package baekjoon.unsolved;
+package baekjoon.r2_silver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,12 +39,15 @@ public class BOJ_10814_나이순_정렬 {
 
 			@Override
 			public int compare(Person o1, Person o2) {
-				if(o1.age != o2.age) return 
+				if(o1.age != o2.age) return Integer.compare(o1.age, o2.age);
 				return 0;
 			}
 		});
 		
+		for(int i=0; i<N; i++) {
+			sb.append(p[i].age).append(" ").append(p[i].name).append("\n");
+		}
 		
-		
+		System.out.println(sb);
 	}//
 }
