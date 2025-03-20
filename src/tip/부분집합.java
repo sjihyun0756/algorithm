@@ -3,11 +3,11 @@ package tip;
 
 public class 부분집합 {
 	//이 방식으로 할 경우 공집합은 따로 추가해줘야함
-	static int[] arr = {1,2,3,4,5,6};
+	static int[] arr = {1,2,5};
 	static int[] num;
 	
 	public static void main(String[] args) {
-		for(int i =1; i<arr.length; i++) {
+		for(int i =1; i<=arr.length; i++) {
 			num = new int[i];
 			subset(0, -1);
 		}
@@ -29,13 +29,14 @@ public class 부분집합 {
 		}
 	}
 }
+
 */
 
 package tip;
 
 public class 부분집합 {
 	
-	static int[] arr = {1, 2, 3, 4, 5, 6};
+	static int[] arr = {5,2,1};
 	static boolean[] visit = new boolean[arr.length]; 
 	
 	public static void main(String[] args) {
@@ -60,3 +61,4 @@ public class 부분집합 {
 		subset(index + 1);
 	}
 }
+
