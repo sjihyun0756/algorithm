@@ -19,7 +19,7 @@ public class BOJ_1253_좋다 {
 		
 		Arrays.sort(arr);
 		
-		int left = 0, right = 0, cnt = 0, len = 0;
+		int left = 0, right = 0, cnt = 0;
 		for(int i=0; i<N; i++) {
 			int target = arr[i];
 			left = 0; right = N-1; //idx
