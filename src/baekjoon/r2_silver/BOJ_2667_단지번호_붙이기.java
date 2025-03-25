@@ -1,59 +1,58 @@
 package baekjoon.r2_silver;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class BOJ_2667_단지번호_붙이기 {
 	
 	static int N;
-	static char[][] field;
-	static int[] dx = {0,0,1,-1};
-	static int[] dy = {1,-1,0,0};
-	static int cnt=0;
-	
-	private static void dfs(int i, int j) {
-		field[i][j] = '0';
-		cnt++;
-		
-		for(int d=0; d<4; d++) {
-			int nx = dx[d] + i;
-			int ny = dy[d] + j;
-			
-			if(0<= nx && nx<N && 0<= ny && ny<N && field[nx][ny]=='1') {
-				dfs(nx,ny);
-			}
-		}
-	}
-	
+    static boolean[][] field;
+    static int[] dx = {0, 0, 1, -1};
+    static int[] dy = {1, -1, 0, 0};
+
+    private static int dfs(int x, int y) {
+        field[x][y] = false; 
+        int count = 1;
+
+        for (int d = 0; d < 4; d++) {
+            int nx = x + dx[d];
+            int ny = y + dy[d];
+
+            if (nx >= 0 && nx < N && ny >= 0 && ny < N && field[nx][ny]) {
+                count += dfs(nx, ny);
+            }
+        }
+        return count;
+    }
 	
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		List<Integer> list = new ArrayList<>();
-		N = Integer.parseInt(br.readLine());
-		field = new char[N][N];
-		
-		for(int i=0; i<N; i++) {
-			field[i] = br.readLine().toCharArray();
-		}
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+        List<Integer> result = new ArrayList<>();
 
-		for(int i=0; i<N; i++) {
-			for(int j=0; j<N; j++) {
-				if(field[i][j] =='1') {
-					cnt=0;
-					dfs(i,j);
-					list.add(cnt);
-				}
-			}
+        N = Integer.parseInt(br.readLine());
+        field = new boolean[N][N];
+
+        for (int i = 0; i < N; i++) {
+            String line = br.readLine();
+            for (int j = 0; j < N; j++) {
+                field[i][j] = (line.charAt(j) == '1');
+            }
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (field[i][j]) {
+                    result.add(dfs(i, j));
+                }
+            }
+        }
+
+        sb.append(result.size()).append("\n");
+		Collections.sort(result);
+		for(int a : result) {
+			sb.append(a).append("\n");
 		}
-		System.out.println(list.size());
-		Collections.sort(list);
-		for(int a : list) {
-			System.out.println(a);
-		}
-	}
+		System.out.println(sb);
+    }
 }

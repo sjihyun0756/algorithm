@@ -10,28 +10,38 @@ public class BOJ_2583_영역구하기 {
 	static int N;
 	static int[] dx = {0,0,1,-1};
 	static int[] dy = {1,-1,0,0};
-	static int cnt;
-	
-	private static void dfs(int i, int j) {
-		if(field[i][j] == 0) return;
+
+	private static int bfs(int i, int j) {
+		Queue<int[]> q = new ArrayDeque<>();
+		q.offer(new int[] {i,j});
+		field[i][j] = 1;
+		int cnt = 1;
 		
-		field[i][j] = 0;
-		for(int d = 0; d<4; d++) {
-			int nx = dx[d] + i;
-			int ny = dy[d] + j;
+		while(!q.isEmpty()) {
+			int[] points = q.poll();
+			int x = points[0];
+			int y = points[1];
 			
-			if(0<= nx && nx < M && 0<= ny && ny < N) {
-				if(field[nx][ny] != 0) {
-					dfs(nx, ny);
-					cnt++;
+			for(int d = 0; d<4; d++) {
+				int nx = dx[d] + x;
+				int ny = dy[d] + y;
+				
+				if(0<= nx && nx < M && 0<= ny && ny < N) {
+					if(field[nx][ny] == 0) {
+						q.offer(new int[] {nx,ny});
+						field[nx][ny] = 1;
+						cnt++;
+					}
 				}
 			}
 		}
+		return cnt;
 	}
 	
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		M = Integer.parseInt(st.nextToken());
 		N = Integer.parseInt(st.nextToken());
@@ -52,13 +62,15 @@ public class BOJ_2583_영역구하기 {
 			}
 		}
 		
+//		for(int i=0; i<M; i++) {
+//			System.out.println(Arrays.toString(field[i]));
+//		}
 		
 		List<Integer> result = new ArrayList<>();
 		for(int i=0; i<M; i++) {
 			for(int j= 0; j<N; j++) {
-				if(field[i][j] ==1) {
-					cnt=0;
-					dfs(i, j);
+				if(field[i][j] ==0) {
+					int cnt = bfs(i, j);
 					result.add(cnt);
 				}
 			}
@@ -66,9 +78,11 @@ public class BOJ_2583_영역구하기 {
 		
 		Collections.sort(result);
 		int size = result.size();
-		System.out.println(size);
+		sb.append(size).append("\n");
 		for(int n : result) {
-			System.out.print(n+" ");
+			sb.append(n+" ");
 		}
+		
+		System.out.println(sb);
 	}
 }
