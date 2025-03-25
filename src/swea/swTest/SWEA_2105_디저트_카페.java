@@ -1,4 +1,4 @@
-package swea.unsolved;
+package swea.swTest;
 
 import java.io.*;
 import java.util.*;

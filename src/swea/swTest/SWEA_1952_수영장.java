@@ -31,6 +31,7 @@ public class SWEA_1952_수영장 {
                 int threeMonth = i >= 3 ? dp[i - 3] + prices[2] : prices[2];
 
                 dp[i] = Math.min(oneDay, Math.min(oneMonth, threeMonth));
+                System.out.println(Arrays.toString(dp));
             }
 
             int result = Math.min(dp[12], prices[3]); 
