@@ -1,77 +1,43 @@
 package etc;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Deque;
-import java.util.List;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class 다시풀기용 {
 	
-	static List<Integer>[] graph;
-	static boolean[] visit;
-	static int K;
-	static StringBuilder sb = new StringBuilder();
+	static int[] node;
+	private static int findNode(int num) {
+		if(node[num] == num) return num;
+		return node[num] = findNode(node[num]);
+	}
 	
-	private static void bfs(int X) {
-		Queue<Integer> q = new ArrayDeque<>();
-		q.offer(X);
-		visit[X] = true;
+	private static void unionFind(int num1, int num2) {
+		int root1 = findNode(num1);
+		int root2 = findNode(num2);
 		
-		int level = 0;
-		while(!q.isEmpty()) {
-			int size = q.size();
-			for(int i=0; i<size; i++) {
-				int node = q.poll();
-				if(level == K) {
-					sb.append(node).append("\n");
-					continue;
-				}
-				for(int n : graph[node]) {
-					if(!visit[n]) {
-						q.offer(n);
-						visit[n] = true;
-					}
-				}
-			}
-			level++;
-			if(level>K) return;
-		}
-		
+		if(root1 < root2) node[root2] = root1;
+		else node[root1] = root2;
 	}
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		
+		StringBuilder sb = new StringBuilder();
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
-		K = Integer.parseInt(st.nextToken());
-		int X = Integer.parseInt(st.nextToken());
 		
-		graph = new ArrayList[N+1];
-		visit = new boolean[N+1];
-		
-		for(int i=1; i<N+1; i++) {
-			graph[i] = new ArrayList<>();
-		}
-		
+		node = new int[N+1];
+		Arrays.setAll(node, i->i);
+
 		for(int i=0; i<M; i++) {
 			st = new StringTokenizer(br.readLine());
-			int u = Integer.parseInt(st.nextToken());
-			int v = Integer.parseInt(st.nextToken());
+			int caseNum = Integer.parseInt(st.nextToken());
+			int num1 = Integer.parseInt(st.nextToken());
+			int num2 = Integer.parseInt(st.nextToken());
 			
-			graph[u].add(v);
+			if(caseNum==0) unionFind(num1, num2);
+			else sb.append(findNode(num1) == findNode(num2) ? "YES" : "NO").append("\n");
 		}
-		
-		bfs(X);
-		if(sb.length() ==0) System.out.println(-1);
-		else System.out.println(sb);
+		System.out.println(sb);
 	}
 }
