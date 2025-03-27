@@ -3,68 +3,64 @@ package tip;
 import java.util.*;
 
 public class PrimMST {
-    static class Node {
-        int vertex, cost;
+	static class Edge {
+		int to, cost;
 
-        public Node(int vertex, int cost) {
-            this.vertex = vertex;
-            this.cost = cost;
-        }
-    }
-    
-    // 간선 추가 함수 (양방향 그래프)
-    static void addEdge(List<Node>[] graph, int from, int to, int weight) {
-        graph[from].add(new Node(to, weight));
-        graph[to].add(new Node(from, weight));
-    }
+		public Edge(int to, int cost) {
+			this.to = to;
+			this.cost = cost;
+		}
+	}
 
-    public static void main(String[] args) {
-        int V = 5; // 정점 수 (0번부터 4번까지)
+	public static void main(String[] args) {
+		int V = 5; // 정점 개수
+		int E = 7; // 간선 개수
 
-        // 인접 리스트 생성
-        List<Node>[] graph = new ArrayList[V];
-        for (int i = 0; i < V; i++) {
-            graph[i] = new ArrayList<>();
-        }
+		List<List<Edge>> edges = new ArrayList<>();
+		for (int i = 0; i <= V; i++) {
+			edges.add(new ArrayList<>());
+		}
 
-        // 간선 입력 (무방향 그래프이므로 양방향 추가)
-        addEdge(graph, 0, 1, 10);
-        addEdge(graph, 0, 2, 6);
-        addEdge(graph, 0, 3, 5);
-        addEdge(graph, 1, 3, 15);
-        addEdge(graph, 2, 3, 4);
-        addEdge(graph, 1, 2, 25);
-        addEdge(graph, 3, 4, 2);
+		edges.get(0).add(new Edge(1, 10));
+		edges.get(1).add(new Edge(0, 10));
+		edges.get(0).add(new Edge(2, 6));
+		edges.get(2).add(new Edge(0, 6));
+		edges.get(0).add(new Edge(3, 5));
+		edges.get(3).add(new Edge(0, 5));
+		edges.get(1).add(new Edge(3, 15));
+		edges.get(3).add(new Edge(1, 15));
+		edges.get(2).add(new Edge(3, 4));
+		edges.get(3).add(new Edge(2, 4));
+		edges.get(1).add(new Edge(2, 25));
+		edges.get(2).add(new Edge(1, 25));
+		edges.get(3).add(new Edge(4, 2));
+		edges.get(4).add(new Edge(3, 2));
 
-        // 프림 알고리즘 수행
-        boolean[] visited = new boolean[V];
-        
-        // Comparator를 이용한 우선순위 큐 (가중치 기준 오름차순)
-        PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(n -> n.cost));
+		boolean[] node = new boolean[V + 1];
+		PriorityQueue<Edge> pq = new PriorityQueue<>((e1,e2) -> Integer.compare(e1.cost, e2.cost));
 
-        int totalCost = 0;
-        int count = 0;
+		// 시작점: 0번 노드
+		node[0] = true;
+		pq.addAll(edges.get(0));
 
-        pq.offer(new Node(0, 0)); // 시작 정점
+		int totalCost = 0;
+		int cnt = 0;
 
-        while (!pq.isEmpty()) {
-            Node current = pq.poll();
+		while (!pq.isEmpty()) {
+			Edge edge = pq.poll();
+			if (node[edge.to]) continue;
 
-            if (visited[current.vertex]) continue;
+			node[edge.to] = true;
+			totalCost += edge.cost;
+			cnt++;
 
-            visited[current.vertex] = true;
-            totalCost += current.cost;
-            count++;
+			if (cnt == V - 1) break;
 
-            if (count == V) break;
+			for (Edge next : edges.get(edge.to)) {
+				if (!node[next.to]) pq.add(next);
+			}
+		}
 
-            for (Node neighbor : graph[current.vertex]) {
-                if (!visited[neighbor.vertex]) {
-                    pq.offer(neighbor);
-                }
-            }
-        }
-
-        System.out.println("MST 총 가중치: " + totalCost);
-    }
+		System.out.println("MST 총 가중치: " + totalCost);
+	}
 }
