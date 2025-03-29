@@ -2,6 +2,17 @@ package tip;
 
 import java.util.*;
 
+/*
+ * 다익스트라메서드!
+ * 1. 우선순위 큐 정의
+ * 2. 시작 노드의 cost = 0으로 초기화
+ * 3. 큐에 넣기
+ * 
+ * 4. curr poll
+ * 5. continue 조건 : curr.cost > costArr[cost.to]
+ * 6. for문 if(costArr[next.to] > costArr[curr.to] + next.cost
+ */
+
 public class DijkstraShrotestPath {
     // 정렬 기준 없이 단순한 데이터 클래스
     static class Node {
