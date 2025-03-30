@@ -1,3 +1,4 @@
+
 package baekjoon.r2_silver;
 
 import java.io.BufferedReader;
@@ -13,7 +14,6 @@ public class BOJ_2178_미로_탐색 {
 	static int[][] map;
 	static int[] dx = {0,0,1,-1};
 	static int[] dy = {1,-1,0,0};
-	
 	
 	private static void bfs(int i, int j) {
 		Queue<int[]> q = new ArrayDeque<>();	
