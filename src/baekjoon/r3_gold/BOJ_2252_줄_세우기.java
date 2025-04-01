@@ -14,7 +14,6 @@ public class BOJ_2252_줄_세우기 {
 		
 		List<Integer>[] graph = new ArrayList[N+1];
 		int[] inDegree = new int[N+1];
-		
 		for(int i=0; i<=N; i++) {
 			graph[i] = new ArrayList<>();
 		}
