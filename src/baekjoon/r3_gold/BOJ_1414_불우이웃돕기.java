@@ -35,16 +35,6 @@ public class BOJ_1414_불우이웃돕기 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
 		
-		if(N==1) {
-			char input = br.readLine().charAt(0);
-			if(input == '0') System.out.println(0);
-			else {
-				int cost = (input >= 'A' && input <= 'Z') ? input - 'A'+27 : input - 'a'+ 1;
-				System.out.println(cost);
-			}
-			return;
-		}
-		
 		List<Edge> graph  = new ArrayList<>();
 		node = new int[N];
 		Arrays.setAll(node,  i->i);
@@ -70,13 +60,14 @@ public class BOJ_1414_불우이웃돕기 {
 			if(unionFind(e.from, e.to)) {
 				minLen += e.cost;
 				cnt++;
-				
 				if(cnt == N-1) {
 					isPossible = true;
 					break;
 				}
 			}
 		}
+		
+		if(cnt==N-1) isPossible = true;
 		System.out.println( isPossible ? (totalLen-minLen) : -1);
 	}
 }
