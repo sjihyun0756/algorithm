@@ -3,7 +3,7 @@ package swea.d4;
 import java.io.*;
 import java.util.*;
 
-public class SWEA_파핑파핑_지뢰찾기 {
+public class SWEA_1868_파핑파핑_지뢰찾기 {
 	static int N;
 	static char[][] field;
 	static int[][] numField;

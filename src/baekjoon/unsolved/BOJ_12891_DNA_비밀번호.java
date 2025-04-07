@@ -1,69 +1,63 @@
 package baekjoon.unsolved;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
-
-// A C G T
+import java.io.*;
+import java.util.*;
 
 public class BOJ_12891_DNA_비밀번호 {
+	
+	static int[] mustNeed;
+	
+	private static boolean isPassword(int[] check) {
+		for(int i=0; i<check.length; i++) {
+			if(mustNeed[i] > check[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
 		int S = Integer.parseInt(st.nextToken());  //9
-		int P = Integer.parseInt(st.nextToken());  //8
+		int P = Integer.parseInt(st.nextToken())-1;  //8-1 = 7
 		
-		String input = br.readLine();
-		int[] must = new int[4];
-		int[] check = new int[4]; // A C G T
+		char[] input = br.readLine().toCharArray();
 		
+		mustNeed = new int[4];
 		st = new StringTokenizer(br.readLine());
 		for(int i=0; i<4; i++) {
-			must[i] = Integer.parseInt(st.nextToken());
-		}
-		//첫번째 검사
-		for(int i=0; i< P; i++) {
-			if(input.charAt(i)=='A') check[0]++;
-			else if(input.charAt(i)=='C') check[1]++;
-			else if(input.charAt(i)=='G') check[2]++;
-			else check[3]++;  // T일 때
-		}
-
-		// 이 과정을 언제까지? 몇번?
-		//두번째 검사
-		for(int i=1; i< P+1; i++) {
-			if(input.charAt(i)=='A') check[0]++;
-			else if(input.charAt(i)=='C') check[1]++;
-			else if(input.charAt(i)=='G') check[2]++;
-			else check[3]++;  // T일 때
+			mustNeed[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		for(int i=0; i<P-S; i++) {
-			
-			
-			
-			
-			
-			
+		int cnt = 0;
+		int[] check = new int[4];
+		
+		for(int i=0; i<=P; i++) {//first time
+			char c = input[i];
+			if(c == 'A') check[0]++;
+			else if(c=='C') check[1]++;
+			else if(c=='G') check[2]++;
+			else check[3]++;
 		}
+		if(isPassword(check)) cnt++;
 		
 		
-//		for(int i=0; i<input.length(); i++) {
-//			if(input.charAt(i)=='A') check[0]++;
-//			else if(input.charAt(i)=='C') check[1]++;
-//			else if(input.charAt(i)=='G') check[2]++;
-//			else check[3]++;  // T일 때
-//		}
-//		
-//		for(int i=0; i< S-P+1; i++) { //2번 검사함
-//			
-//			
-//			
-//		}
+		for(int i=1; i<S-P; i++) {
+			char c = input[i-1];
+			if(c == 'A') check[0]--;
+			else if(c=='C') check[1]--;
+			else if(c=='G') check[2]--;
+			else check[3]--;
+			
+			c = input[i+P];
+			if(c == 'A') check[0]++;
+			else if(c=='C') check[1]++;
+			else if(c=='G') check[2]++;
+			else check[3]++;
+			if(isPassword(check)) cnt++;
+		}
+		System.out.println(cnt);
 	}
-	
-
 }
