@@ -21,10 +21,9 @@ public class 배틀싸피 {
 
     private static void bfs() {
         N = mapData.length;
-        parent = new Node[N][N][heart + 1];
-//        parent = new Node[N][N][3];
+        parent = new Node[N][N][heart + 1]; //중요
 
-        outer:
+        outer: //A좌표 찾기
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (mapData[i][j].equals("A")) {
@@ -175,14 +174,14 @@ public class 배틀싸피 {
         String data = """
 10 10 2 1 1
 G G G G R G G G R X
-G G R G R G R G G G
-R G R G G G R G R G
+G G R G R G R G G T
+R G R G G G R G R A
 G G R T T T T G G R
 G R T T G R R G G G
 G G T T G R G G G G
 R G R G G R G R G R
-A G R G G R G G G G
-F G R G G W W W W G
+G G R G G R G G G G
+G G R G G W W W W G
 G G G G G G G G G G
 A 100 R 1 1
 H 10
