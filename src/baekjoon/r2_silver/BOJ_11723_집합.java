@@ -1,4 +1,4 @@
-package baekjoon.unsolved;
+package baekjoon.r2_silver;
 
 import java.util.*;
 import java.io.*;
@@ -8,24 +8,23 @@ public class BOJ_11723_집합 {
 	private static StringBuilder sb = new StringBuilder();
 	private static int standardNum = 0;
 	
-	private static StringBuilder operate(String action, int num) {
+	private static void operate(String action, int num) {
 		int actionNum = (1<<num);
-		if(action.equals("add)")) {
+		if(action.equals("add")) {
 			standardNum |= actionNum;
 		}else if(action.equals("remove")) {
-			standardNum -= actionNum;
+			standardNum &= ~actionNum;
 		}else if(action.equals("check")) {
 			if ((standardNum & actionNum) != 0) sb.append("1").append("\n");
 			else sb.append("0").append("\n");
 		}else if(action.equals("toggle")) {
-			if ((standardNum & actionNum) != 0) standardNum -= actionNum;
+			if ((standardNum & actionNum) != 0) standardNum &= ~actionNum;
 			else standardNum |= actionNum;
 		}else if(action.equals("all")) {
 			standardNum = (1<<21) -1;
 		}else { //action -> empty
 			standardNum = 0; 
 		}
-		return sb;
 	}
 	
 	public static void main(String[] args) throws IOException {
