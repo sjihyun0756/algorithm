@@ -1,4 +1,4 @@
-package baekjoon.r3_gold;
+package baekjoon.r2_silver;
 
 import java.util.*;
 
