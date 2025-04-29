@@ -7,29 +7,30 @@ public class BOJ_13549_숨바꼭질3 {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         int M = sc.nextInt();
+        int max = 100001;
 
-        int[] dp = new int[100001];
+        int[] dp = new int[max];
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[N] = 0; 
 
-        Deque<Integer> deque = new ArrayDeque<>();
-        deque.offer(N);
+        Deque<Integer> dq = new ArrayDeque<>();
+        dq.offer(N);
 
-        while (!deque.isEmpty()) {
-            int now = deque.poll();
+        while (!dq.isEmpty()) {
+            int n = dq.poll();
 
-            if (now * 2 <= 100000 && dp[now * 2] > dp[now]) {
-                dp[now * 2] = dp[now];
-                deque.offerFirst(now * 2);
+            if (n * 2 < max && dp[n * 2] > dp[n]) {
+                dp[n * 2] = dp[n];
+                dq.offerFirst(n * 2);
             }
 
-            if (now + 1 <= 100000 && dp[now + 1] > dp[now] + 1) {
-                dp[now + 1] = dp[now] + 1;
-                deque.offerLast(now + 1);
+            if (n + 1 < max && dp[n + 1] > dp[n] + 1) {
+                dp[n + 1] = dp[n] + 1;
+                dq.offerLast(n + 1);
             }
-            if (now - 1 >= 0 && dp[now - 1] > dp[now] + 1) {
-                dp[now - 1] = dp[now] + 1;
-                deque.offerLast(now - 1);
+            if (n - 1 >= 0 && dp[n - 1] > dp[n] + 1) {
+                dp[n - 1] = dp[n] + 1;
+                dq.offerLast(n - 1);
             }
         }
         System.out.println(dp[M]);
