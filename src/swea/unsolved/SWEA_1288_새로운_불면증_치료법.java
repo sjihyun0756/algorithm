@@ -13,6 +13,7 @@ public class SWEA_1288_새로운_불면증_치료법 {
 		int cnt = 0;
 		while(true) {
 			
+			
 		}
 	}
 	
