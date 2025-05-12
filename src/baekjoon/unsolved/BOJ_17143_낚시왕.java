@@ -6,7 +6,7 @@ import java.util.*;
 public class BOJ_17143_낚시왕 {
 
 	private static List<Sharks> sharkList;
-	private static int R,C, sharkSum=0; 
+	private static int R,C, sharkSum; 
 
 	private static class Sharks {
 		int r, c, s, d, z;
@@ -19,9 +19,28 @@ public class BOJ_17143_낚시왕 {
 			this.z = z;
 		}
 	}
+	
+	private static void findShark(int num) {
+		int result = 0, depth = Integer.MAX_VALUE, idx = -1;
+		for(int i=0; i<sharkList.size(); i++) {
+			Sharks shark = sharkList.get(i);
+			int r = shark.r;
+	        int c = shark.c;
+	        
+	        if(c==num && depth > r) {
+	        	depth = r;
+        		idx = i;
+	        }
+		}
+		
+		if(idx != -1) {
+			System.out.println(num + "번째  "+ "상어 크기 : " + sharkList.get(idx).z);
+			sharkSum += sharkList.get(idx).z;
+			System.out.println("sharkSum : " + sharkSum);
+			sharkList.remove(idx);
+		}
+	}
 
-	// (r, c)는 상어의 위치, s는 속력, d는 이동 방향, z는 크기이다.
-	// d가 1인 경우는 위, 2인 경우는 아래, 3인 경우는 오른쪽, 4인 경우는 왼쪽을 의미한다.
 	
 	private static void moveShark() {
 		
@@ -110,25 +129,6 @@ public class BOJ_17143_낚시왕 {
 		if (removeIdx != -1) sharkList.remove(removeIdx);
 	}
 	
-	private static void findShark(int num) {
-		int result = 0, depth = Integer.MAX_VALUE, idx = -1;
-		for(int i=0; i<sharkList.size(); i++) {
-			Sharks shark = sharkList.get(i);
-			int r = shark.r;
-	        int c = shark.c;
-	        
-	        if(c==i && depth > r) {
-	        	depth = r;
-        		idx = i;
-	        }
-		}
-		
-		if(idx != -1) {
-			sharkSum += sharkList.get(idx).z;
-			sharkList.remove(idx);
-		}
-	}
-
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -149,7 +149,8 @@ public class BOJ_17143_낚시왕 {
 			sharkList.add(new Sharks(r, c, s, d, z));
 		}
 		
-		for (int i = 1; i <= C; i++) {
+		sharkSum= 0;
+		for (int i = 0; i < C; i++) {
 			findShark(i);
 			moveShark();
 		}
