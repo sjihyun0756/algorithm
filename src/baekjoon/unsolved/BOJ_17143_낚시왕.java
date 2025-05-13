@@ -9,7 +9,7 @@ public class BOJ_17143_낚시왕 {
 	private static int R,C, sharkSum; 
 
 	private static class Sharks {
-		int r, c, s, d, z;
+		int r, c, s, d, z, num;
 
 		public Sharks(int r, int c, int s, int d, int z) {
 			this.r = r;
@@ -43,7 +43,7 @@ public class BOJ_17143_낚시왕 {
 
 	
 	private static void moveShark() {
-		
+		boolean 확인용 = false;
 		boolean[][] map = new boolean[R+1][C+1];
 	    for(int i=0; i<sharkList.size(); i++) {
 	    	Sharks shark = sharkList.get(i);
@@ -52,6 +52,12 @@ public class BOJ_17143_낚시왕 {
 	        int s = shark.s;
 	        int d = shark.d;
 	        int z = shark.z;
+	        
+	        if(r==1 && c== 5) {
+	        	System.out.println("지금");
+	        	확인용 = true;
+	        }
+	        
 
 	        int newR = r, newC = c, newD = d;
 
@@ -106,6 +112,12 @@ public class BOJ_17143_낚시왕 {
 	            }
 	        }
 	        
+	        if(확인용) {
+	        	System.out.println(newR);
+	        	System.out.println(newC);
+	        	System.out.println(newD);
+	        }
+	        
 	        shark.r = newR;
 	        shark.c = newC;
 	        shark.d = newD;
@@ -129,6 +141,13 @@ public class BOJ_17143_낚시왕 {
 		if (removeIdx != -1) sharkList.remove(removeIdx);
 	}
 	
+	private static void printShark() {
+		for(Sharks shark : sharkList) {
+			System.out.println("좌표 : [" + shark.r + ":" + shark.c +"]");
+		}
+		System.out.println("-".repeat(20));
+	}
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -145,14 +164,19 @@ public class BOJ_17143_낚시왕 {
 			int s = Integer.parseInt(st.nextToken());
 			int d = Integer.parseInt(st.nextToken());
 			int z = Integer.parseInt(st.nextToken());
+			int num = i+1;
 
 			sharkList.add(new Sharks(r, c, s, d, z));
 		}
 		
 		sharkSum= 0;
+		System.out.println("############### 초기 ###############");
+		printShark();
 		for (int i = 0; i < C; i++) {
-			findShark(i);
+			System.out.println("############### "+(i+1) +"번째 ###############");
+			findShark(i+1);
 			moveShark();
+			printShark();
 		}
 		System.out.println(sharkSum);
 	}
