@@ -5,7 +5,7 @@ import java.util.*;
 
 public class BOJ_1167_트리의_지름 {
 	
-	private static class Node{
+	private static class Node{kkkkkkkkkkkkk
 		int from, to, cost;
 		
 		public Node(int from, int to, int cost) {
@@ -32,6 +32,7 @@ public class BOJ_1167_트리의_지름 {
 				int v = Integer.parseInt(st.nextToken());
 				if(v==-1) break;
 				int cost = Integer.parseInt(st.nextToken());
+				
 				
 				
 			}
