@@ -1,17 +1,12 @@
 package baekjoon.r1_bronze;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class BOJ_1592_영식이와_친구들 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
         Map<Integer, Integer> map = new HashMap<>();
 
         int N = Integer.parseInt(st.nextToken()); 
@@ -25,6 +20,7 @@ public class BOJ_1592_영식이와_친구들 {
         int p = 1; 
         int count = 0;
 
+        while (true) {
             map.put(p, map.get(p) + 1);
 
             if (map.get(p) == M) { 
@@ -34,7 +30,7 @@ public class BOJ_1592_영식이와_친구들 {
             if (map.get(p) % 2 == 1) { //오른
                 p = p+L > N ? p+L-N : p+L;
             } else { // 왼쪽 
-                p = p - L < 0 ? p - L + N : p - L;
+                p = p - L < 1 ? p - L + N : p - L;
 
             }
             count++;
