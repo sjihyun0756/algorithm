@@ -1,4 +1,4 @@
-package baekjoon.unsolved;
+package baekjoon.r4_platinum;
 
 import java.io.*;
 import java.util.*;
@@ -22,7 +22,7 @@ public class BOJ_1162_도로포장 {
         dp[1][0] = 0;
 
         PriorityQueue<long[]> pq = new PriorityQueue<>(Comparator.comparingLong(a -> a[1]));
-        pq.offer(new long[] {1, 0, 0}); // node, cost, paved
+        pq.offer(new long[] {1, 0, 0}); 
 
         while (!pq.isEmpty()) {
             long[] cur = pq.poll();
