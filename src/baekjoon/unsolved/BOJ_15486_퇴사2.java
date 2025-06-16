@@ -25,7 +25,7 @@ public class BOJ_15486_퇴사2 {
 		int[] dp = new int[N];
 		for(int i=0; i<N; i++) {
 			int d = day[i];
-			dp[i] = 
+//			dp[i] = 
 		}
 	}
 }

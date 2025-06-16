@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 public class 미로탈출 {
 	static int N;
 	static int M;
-	static int[] arr;
+	static int[][] arr;
 	static int[] dx = {-1,0,0,1};
 	static int[] dy = {0,1,-1,0};
 	//동, 서, 남, 북

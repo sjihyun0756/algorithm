@@ -25,6 +25,7 @@ public class SWEA_1244_최대상금 {
 			
 			return true;
 		}
+		return false;
 	}
 	
 	

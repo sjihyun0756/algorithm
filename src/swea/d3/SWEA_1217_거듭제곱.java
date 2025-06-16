@@ -3,9 +3,13 @@ package swea.d3;
 import java.util.Scanner;
 
 public class SWEA_1217_거듭제곱 {
+	
 	private static int power(int N, int M) {
-		if(M==1) return N;
-		return N*power(N, M-1);
+		if (M == 0) return 1;
+
+		int half = power(N, M / 2);
+		if (M % 2 == 0) return half * half;
+		else return half * half * N;
 	}
 	
 	public static void main(String[] args) {
@@ -20,4 +24,6 @@ public class SWEA_1217_거듭제곱 {
 		}
 	}
 }
+
+
 

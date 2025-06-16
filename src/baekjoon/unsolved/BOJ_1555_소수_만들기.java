@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_1555_소수_만들기 {
 	
-	private static void setPrime() {
+	private static void setPrime(int max) {
 		
 		
 	}
