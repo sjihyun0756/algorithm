@@ -19,4 +19,3 @@ message="[$today] $platform $number : $status"
 git add .
 git status
 git commit -m "$message"
-git push
