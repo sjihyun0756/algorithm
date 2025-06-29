@@ -7,7 +7,7 @@ today=$(date +%y-%m-%d)
 read -p "플랫폼 입력 (BOJ/SWEA/PRO): " platform
 
 # 문제 번호 입력
-read -p "문제 번호 (예: 1234): " number
+read -p "문제 번호 (ex: 1234): " number
 
 # 상태 입력 (solved / unsolved / refactor 등)
 read -p "상태 입력 (solved/unsolved/refactor): " status
