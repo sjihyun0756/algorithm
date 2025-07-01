@@ -1,3 +1,15 @@
-/.metadata/
+# Eclipse
+.metadata/
 bin/
 *.class
+
+# IntelliJ / VSCode
+*.iml
+.idea/
+
+# macOS
+.DS_Store
+
+# 기타
+*.log
+*.tmp
