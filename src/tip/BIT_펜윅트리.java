@@ -1,9 +1,9 @@
-package baekjoon.unsolved;
+package tip;
 
 import java.io.*;
 import java.util.*;
 
-public class BOJ_11658_구간_합_구하기3 {
+public class BIT_펜윅트리 {
 
 	private static BufferedReader br;
 	private static StringTokenizer st;
